@@ -14,7 +14,7 @@ module.exports = function(content) {
   };
 
   var query = loaderUtils.getOptions(this) || {};
-  var options = this.options[query.config || "extensionLoader"] || {};
+  var options = this.options ? this.options[query.config || "extensionLoader"] : {};
 
   // options takes precedence over config
   Object.keys(options).forEach(function(attr) {
@@ -28,7 +28,7 @@ module.exports = function(content) {
 
   // the final URL
   var url = loaderUtils.interpolateName(this, config.name, {
-    context: this.options.context,
+    context: this.context,
     content: content,
     regExp: config.regExp,
   });
